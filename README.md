@@ -29,7 +29,7 @@ The following products / tools are needed to contribute / fork.
 * NCrunch [http://www.ncrunch.net/](http://www.ncrunch.net/ http://www.ncrunch.net/)
 
 ## Authors
-*Lars Kessler
+* Lars Kessler
 * Marius Dubach
 
 ## License
