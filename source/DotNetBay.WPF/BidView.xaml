@@ -1,0 +1,47 @@
+﻿<Window x:Class="DotNetBay.WPF.BidView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="BidView" Height="300" Width="300">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top">Add new Auction</TextBlock>
+
+        <Grid Margin="0 40 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0">Title</TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="1" ></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0">Image</TextBlock>
+            <Image  Grid.Row="1" Grid.Column="1"></Image>
+            <TextBlock Grid.Row="2" Grid.Column="0">Description</TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="1"></TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="0">Start Price</TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="1"></TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="0">Current Price</TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="1"></TextBlock>
+            <TextBlock Grid.Row="5" Grid.Column="0">Your bid</TextBlock>
+            <TextBox Grid.Row="5" Grid.Column="1"></TextBox>
+            <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+                <Button HorizontalAlignment="Stretch">Place Bid</Button>
+                <Button HorizontalAlignment="Stretch">Cancel</Button>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>
