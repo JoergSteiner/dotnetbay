@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DotNetBay.Model;
+using DotNetBay.Core;
 
 namespace DotNetBay.WPF
 {
@@ -23,5 +25,30 @@ namespace DotNetBay.WPF
         {
             InitializeComponent();
         }
+
+        private void Btn_cancel(object sender, EventArgs e)
+        {
+            this.Close();            
+        }
+
+        private void Btn_startAuction(object sender, EventArgs e)
+        {
+            var mainRepository = ((App)Application.Current).MainRepository;
+            var memberService = new SimpleMemberService(mainRepository);
+            var auctionServie = new AuctionService(mainRepository, memberService);
+
+            var me = memberService.GetCurrentMember();
+            auctionServie.Save(new Auction
+            {
+                Title = "newAuction",
+                StartDateTimeUtc = DateTime.UtcNow.AddSeconds(20),
+                EndDateTimeUtc = DateTime.UtcNow.AddDays(14),
+                StartPrice = 72,
+                Seller = me
+            });
+
+            System.Diagnostics.Debug.WriteLine("Halloooooooooooooooooo");
+        }
+
     }
 }

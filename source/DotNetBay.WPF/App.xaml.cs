@@ -40,7 +40,7 @@ namespace DotNetBay.WPF
             service.Save(new Auction
             {
                 Title = "My First Auction",
-                StartDateTimeUtc = DateTime.UtcNow.AddSeconds(10),
+                StartDateTimeUtc = DateTime.UtcNow.AddSeconds(20),
                 EndDateTimeUtc = DateTime.UtcNow.AddDays(14),
                 StartPrice = 72,
                 Seller = me

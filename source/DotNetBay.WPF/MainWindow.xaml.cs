@@ -36,32 +36,40 @@ namespace DotNetBay.WPF
             {
                 auctions.Add(auction);
             }
-          var app = App.Current as App;
-          app.AuctionRunner.Auctioneer.AuctionEnded += eventHandler;
+            var app = App.Current as App;
+
+            app.AuctionRunner.Auctioneer.AuctionStarted += Auctioneer_AuctionStarted;
+
             InitializeComponent();
+        }
+
+        private void Auctioneer_AuctionStarted(object sender, Core.Execution.AuctionEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("auctionstarted");
+            CollectionViewSource.GetDefaultView(auctions).Refresh();
         }
 
         private void Btn_bid(object sender, RoutedEventArgs e)
         {
-
+            var bidView = new BidView();
+            bidView.ShowDialog(); // Blocking
         }
 
-      private void Btn_newAuction(object sender, RoutedEventArgs e)
-      {
-        var sellView = new SellView();
-        sellView.ShowDialog(); // Blocking
-      }
-
-      private void eventHandler(object sender, EventArgs e)
-      {
-          Console.WriteLine("huhu");
-      }
-
+        private void Btn_newAuction(object sender, RoutedEventArgs e)
+        {
+            var sellView = new SellView();
+            sellView.ShowDialog(); // Blocking
+        }
 
 
         public ObservableCollection<Auction> Auctions
         {
             get { return this.auctions; }
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Halloooooooooooooooooo");
         }
     }
 }

@@ -42,8 +42,8 @@
                 <TextBox DockPanel.Dock="Left" HorizontalAlignment="Stretch"></TextBox>
             </DockPanel>
             <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
-                <Button HorizontalAlignment="Left">Start Auction</Button>
-                <Button HorizontalAlignment="Right">Cancel</Button>
+                <Button HorizontalAlignment="Left" Click="Btn_startAuction">Start Auction</Button>
+                <Button HorizontalAlignment="Right" Click="Btn_cancel">Cancel</Button>
             </StackPanel>
         </Grid>
 
