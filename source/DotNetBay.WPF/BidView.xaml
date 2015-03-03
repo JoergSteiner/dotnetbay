@@ -8,7 +8,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top">Add new Auction</TextBlock>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top">Place Bid</TextBlock>
 
         <Grid Margin="0 40 0 0">
             <Grid.RowDefinitions>
@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0">Title</TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="1" ></TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="1" Name="title"></TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="0">Image</TextBlock>
             <Image  Grid.Row="1" Grid.Column="1"></Image>
             <TextBlock Grid.Row="2" Grid.Column="0">Description</TextBlock>
@@ -38,8 +38,8 @@
             <TextBlock Grid.Row="5" Grid.Column="0">Your bid</TextBlock>
             <TextBox Grid.Row="5" Grid.Column="1"></TextBox>
             <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
-                <Button HorizontalAlignment="Stretch">Place Bid</Button>
-                <Button HorizontalAlignment="Stretch">Cancel</Button>
+                <Button HorizontalAlignment="Stretch" Click="btn_placeBid">Place Bid</Button>
+                <Button HorizontalAlignment="Stretch" Click="btn_Cancel">Cancel</Button>
             </StackPanel>
         </Grid>
 

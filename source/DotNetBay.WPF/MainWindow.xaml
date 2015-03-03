@@ -9,44 +9,46 @@
         mc:Ignorable="d"        
         Title="MainWindow">
 
-<Window.Resources>
+    <Window.Resources>
         <converter:BooleanToStatusTextConverter x:Key="booleanToStatusTextConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-</Window.Resources>
+    </Window.Resources>
 
-<Grid>
-    <Grid.RowDefinitions>
-        <RowDefinition></RowDefinition>
-        <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-    <Button Content="Start Auction" HorizontalAlignment="left" Margin="10 10 0 0" VerticalAlignment="Top" Width="75" Click="Btn_newAuction"></Button>
+        <Button Content="Start Auction" HorizontalAlignment="left" Margin="10 10 0 0" VerticalAlignment="Top" Width="75" Click="Btn_newAuction"></Button>
+
+
 
         <DataGrid Margin="0 40 0 0" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Auctions}" SelectionChanged="DataGrid_SelectionChanged" >
             <DataGrid.Columns >
-            <DataGridTextColumn Header="Auction" Binding="{Binding Path=Title}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Status" Binding="{Binding Path=IsRunning, Converter={StaticResource booleanToStatusTextConverter}}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Start Price" Binding="{Binding Path=StartPrice}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Current Price" Binding="{Binding Path=CurrentPrice}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Bids" Binding="{Binding Path=Bids}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Starts" Binding="{Binding Path=StartDateTimeUtc}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Ends" Binding="{Binding Path=EndDateTimeUtc}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Seller" Binding="{Binding Path=Seller.DisplayName}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Current Winner" Binding="{Binding Path=Winner.DisplayName}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Closed" Binding="{Binding Path=isClosed}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Winner"  Binding="{Binding Path=Winner.DisplayName}"></DataGridTextColumn>
-            <DataGridTemplateColumn Header="Place Bid">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
+                <DataGridTextColumn Header="Auction" Binding="{Binding Path=Title}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Status" Binding="{Binding Path=IsRunning, Converter={StaticResource booleanToStatusTextConverter}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Start Price" Binding="{Binding Path=StartPrice}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Current Price" Binding="{Binding Path=CurrentPrice}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Bids" Binding="{Binding Path=Bids}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Starts" Binding="{Binding Path=StartDateTimeUtc}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ends" Binding="{Binding Path=EndDateTimeUtc}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Seller" Binding="{Binding Path=Seller.DisplayName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Current Winner" Binding="{Binding Path=Winner.DisplayName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Closed" Binding="{Binding Path=isClosed}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Winner"  Binding="{Binding Path=Winner.DisplayName}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Place Bid">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
                             <Button Visibility="{Binding Path=IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}" Background="Green" Click="Btn_bid">Bid</Button>
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-        </DataGrid.Columns>
-    </DataGrid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
-</Grid>
+    </Grid>
 
 
-    
+
 </Window>

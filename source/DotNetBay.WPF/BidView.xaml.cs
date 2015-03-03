@@ -19,9 +19,26 @@ namespace DotNetBay.WPF
     /// </summary>
     public partial class BidView : Window
     {
-        public BidView()
+
+      private MainWindow mainWindow;
+      private Auction ac;
+
+        public BidView(MainWindow mainWindow, Auction ac)
         {
             InitializeComponent();
+          this.mainWindow = mainWindow;
         }
+
+        private void btn_placeBid(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+        private void btn_Cancel(object sender, RoutedEventArgs e)
+        {
+          this.Close();
+        }
+
+
     }
 }

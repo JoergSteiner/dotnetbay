@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DotNetBay.Model;
 using DotNetBay.Core;
+using Xceed.Wpf.Toolkit;
 
 namespace DotNetBay.WPF
 {
@@ -21,33 +22,46 @@ namespace DotNetBay.WPF
     /// </summary>
     public partial class SellView : Window
     {
-        public SellView()
+
+        private MainWindow mainWindow;
+
+        public SellView(MainWindow mainWindow)
         {
             InitializeComponent();
+            this.mainWindow = mainWindow;
         }
 
         private void Btn_cancel(object sender, EventArgs e)
         {
-            this.Close();            
+            this.Close();
         }
 
         private void Btn_startAuction(object sender, EventArgs e)
         {
             var mainRepository = ((App)Application.Current).MainRepository;
             var memberService = new SimpleMemberService(mainRepository);
-            var auctionServie = new AuctionService(mainRepository, memberService);
+            var auctionService = new AuctionService(mainRepository, memberService);
 
             var me = memberService.GetCurrentMember();
-            auctionServie.Save(new Auction
-            {
-                Title = "newAuction",
-                StartDateTimeUtc = DateTime.UtcNow.AddSeconds(20),
-                EndDateTimeUtc = DateTime.UtcNow.AddDays(14),
-                StartPrice = 72,
-                Seller = me
-            });
 
-            System.Diagnostics.Debug.WriteLine("Halloooooooooooooooooo");
+            var tmp = new Auction
+            {
+                Title = this.TextBoxTitle.Text,
+                StartDateTimeUtc = DateTime.Parse(this.DatePickerStartDate.Text),
+                EndDateTimeUtc = DateTime.Parse(this.DatePickerEndDate.Text),
+                StartPrice = Int64.Parse(TextBoxStartPrice.Text),
+                Seller = me
+            };
+
+            auctionService.Save(tmp);
+            mainWindow.Auctions.Add(tmp);
+
+
+        }
+
+        private void Btn_chooseImage(object sender, RoutedEventArgs e)
+        {
+
         }
 
     }

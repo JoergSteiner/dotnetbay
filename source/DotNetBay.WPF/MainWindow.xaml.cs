@@ -51,13 +51,14 @@ namespace DotNetBay.WPF
 
         private void Btn_bid(object sender, RoutedEventArgs e)
         {
+            this.dat
             var bidView = new BidView();
             bidView.ShowDialog(); // Blocking
         }
 
         private void Btn_newAuction(object sender, RoutedEventArgs e)
         {
-            var sellView = new SellView();
+            var sellView = new SellView(this);
             sellView.ShowDialog(); // Blocking
         }
 
