@@ -51,9 +51,12 @@ namespace DotNetBay.WPF
 
         private void Btn_bid(object sender, RoutedEventArgs e)
         {
-            this.dat
-            var bidView = new BidView();
-            bidView.ShowDialog(); // Blocking
+            var auction = this.AuctionGrid.SelectedItem;
+            if (auction.GetType() == typeof(Auction))
+            {
+                var bidView = new BidView(this, (Auction) auction);
+                bidView.ShowDialog(); // Blocking
+            }            
         }
 
         private void Btn_newAuction(object sender, RoutedEventArgs e)

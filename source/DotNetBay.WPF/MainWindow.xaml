@@ -24,9 +24,17 @@
 
 
 
-        <DataGrid Margin="0 40 0 0" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Auctions}" SelectionChanged="DataGrid_SelectionChanged" >
-            <DataGrid.Columns >
-                <DataGridTextColumn Header="Auction" Binding="{Binding Path=Title}"></DataGridTextColumn>
+        <DataGrid Margin="0 40 0 0" IsReadOnly="True" Name="AuctionGrid" AutoGenerateColumns="False" ItemsSource="{Binding Auctions}" SelectionChanged="DataGrid_SelectionChanged" >
+            <DataGrid.Columns >                
+                
+                <DataGridTemplateColumn Header="Auction">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Path=Image}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
                 <DataGridTextColumn Header="Status" Binding="{Binding Path=IsRunning, Converter={StaticResource booleanToStatusTextConverter}}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Start Price" Binding="{Binding Path=StartPrice}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Current Price" Binding="{Binding Path=CurrentPrice}"></DataGridTextColumn>

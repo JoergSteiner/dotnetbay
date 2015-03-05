@@ -13,11 +13,11 @@ namespace DotNetBay.WPF.Converter
         {
           if ((bool) value)
           {
-            return "Offen";
+            return "laufend";
           }
           else
           {
-            return "Abgeschlossen";
+            return "nicht laufend";
           }
         }
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
