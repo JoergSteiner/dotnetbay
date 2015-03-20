@@ -13,8 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DotNetBay.Core;
 using DotNetBay.Model;
+using DotNetBay.WPF.ViewModel;
 
-namespace DotNetBay.WPF
+namespace DotNetBay.WPF.View
 {
     /// <summary>
     /// Interaction logic for BidView.xaml
@@ -28,6 +29,7 @@ namespace DotNetBay.WPF
         public BidView(MainWindow mainWindow, Auction auction)
         {
             InitializeComponent();
+            this.DataContext = new BidViewModel(mainWindow, auction);
             this.mainWindow = mainWindow;
             this.auction = auction;
         }

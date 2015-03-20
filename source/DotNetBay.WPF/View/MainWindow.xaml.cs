@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using DotNetBay.Model;
 using DotNetBay.Core;
 
-namespace DotNetBay.WPF
+namespace DotNetBay.WPF.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

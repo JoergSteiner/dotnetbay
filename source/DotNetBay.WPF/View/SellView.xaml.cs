@@ -16,8 +16,9 @@ using DotNetBay.Core;
 using Xceed.Wpf.Toolkit;
 using Microsoft.Win32;
 using System.Drawing;
+using DotNetBay.WPF.ViewModel;
 
-namespace DotNetBay.WPF
+namespace DotNetBay.WPF.View
 {
     /// <summary>
     /// Interaction logic for SellView.xaml
@@ -30,6 +31,7 @@ namespace DotNetBay.WPF
         public SellView(MainWindow mainWindow)
         {
             InitializeComponent();
+            this.DataContext = new SellViewModel();
             this.mainWindow = mainWindow;
         }
 
