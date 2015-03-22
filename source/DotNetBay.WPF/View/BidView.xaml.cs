@@ -23,70 +23,13 @@ namespace DotNetBay.WPF.View
     public partial class BidView : Window
     {
 
-        private MainWindow mainWindow;
         private Auction auction;
 
-        public BidView(MainWindow mainWindow, Auction auction)
+        public BidView(Auction auction)
         {
             InitializeComponent();
-            this.DataContext = new BidViewModel(mainWindow, auction);
-            this.mainWindow = mainWindow;
+            this.DataContext = new BidViewModel(auction, this);
             this.auction = auction;
         }
-
-        private void btn_placeBid(object sender, RoutedEventArgs e)
-        {
-            var bids = auction.Bids;
-            double highestBid;
-            Bid bid = null;
-            var memberService = new SimpleMemberService(((App)App.Current).MainRepository);
-
-            if (bids.Count > 0)
-            {
-                highestBid = bids.OrderByDescending(i => i.Amount).First().Amount;
-            }
-            else
-            {
-                highestBid = 0;
-            }
-
-            var amount = Int64.Parse(this.TextBoxBid.Text);
-            if (amount > 0 && amount > highestBid)
-            {
-                bid = new Bid();
-                bid.Amount = amount;
-                bid.Accepted = true;
-                bid.Auction = auction;
-                bid.Bidder = memberService.GetCurrentMember();
-                bid.ReceivedOnUtc = DateTime.Now;
-            }
-            else if (amount > 0)
-            {
-                bid = new Bid();
-                bid.Amount = amount;
-                bid.Accepted = false;
-                bid.Auction = auction;
-                bid.Bidder = memberService.GetCurrentMember();
-                bid.ReceivedOnUtc = DateTime.Now;
-            }
-            else
-            {
-            }
-
-            if (bid != null)
-            {
-                bids.Add(bid);
-
-            }
-
-            
-        }
-
-        private void btn_Cancel(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-
     }
 }

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using DotNetBay.Model;
+using System.Windows.Input;
+using DotNetBay.WPF.View;
 
 namespace DotNetBay.WPF.ViewModel
 {
@@ -19,6 +21,17 @@ namespace DotNetBay.WPF.ViewModel
         public AuctionViewModel(Auction auction)
         {
             this.auction = auction;
+            this.PlaceBidCommand = new CommandWrapper(this.PlaceBidAction);
+        }
+
+
+        public ICommand PlaceBidCommand { get; private set; }
+
+        private void PlaceBidAction()
+        {
+            System.Console.WriteLine("PlaceBidAction Called");
+            var bidView = new BidView(this.auction);
+            bidView.Show();
         }
 
         public String Title
@@ -35,8 +48,12 @@ namespace DotNetBay.WPF.ViewModel
 
         public Boolean IsRunning
         {
+            /*
             get { return this.auction.IsRunning; }
             private set { this.auction.IsRunning = value; }
+             */
+            get { return true; }
+            set { }
         }
 
         public String StartPrice
@@ -52,7 +69,23 @@ namespace DotNetBay.WPF.ViewModel
 
         public String Bids
         {
-            get { return this.auction.Bids.ToString(); }
+            get
+            {
+                String res = "";
+                foreach (var x in this.auction.Bids)
+                {
+                    if (x.Bidder != null)
+                    {
+                        res = res + "\n" + x.Bidder.DisplayName + " : " + x.Amount;
+                    }
+                    else
+                    {
+                        res = res + "\n" + "Bidder is anonymous";
+                    }
+                }
+
+                return res;
+            }
             private set { }
         }
 

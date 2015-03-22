@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using DotNetBay.Model;
 using DotNetBay.Core;
 using DotNetBay.WPF.ViewModel;
+using System.ComponentModel;
 
 namespace DotNetBay.WPF.View
 {
@@ -25,15 +26,25 @@ namespace DotNetBay.WPF.View
     public partial class MainWindow : Window
     {
 
+        private MainViewModel model;
+
         public MainWindow()
         {
             this.InitializeComponent();
-
             var app = App.Current as App;
             var memberService = new SimpleMemberService(app.MainRepository);
             var auctionService = new AuctionService(app.MainRepository, memberService);
 
-            this.DataContext = new MainViewModel(app.AuctionRunner.Auctioneer, auctionService);
+            model = new MainViewModel(app.AuctionRunner.Auctioneer, auctionService);
+            model.Update += this.UpdateAboutChanges;
+            this.DataContext = model;
+        }
+
+        public void UpdateAboutChanges()
+        {
+            this.DataContext = null;
+            this.DataContext = this.model;
+            Console.WriteLine("MainWindow.xaml.cs has been notified");
         }
 
     }

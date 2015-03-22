@@ -1,6 +1,13 @@
 ﻿<Window x:Class="DotNetBay.WPF.View.BidView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:DotNetBay.WPF.ViewModel"
+        d:DataContext="{d:DesignInstance Type=vm:BidViewModel}"
+        mc:Ignorable="d"
+        
         Title="BidView" Height="300" Width="300">
     <Grid >
         <Grid.RowDefinitions>
@@ -26,21 +33,26 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0">Title</TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="1" Name="title"></TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Title}"></TextBlock>
+            
             <TextBlock Grid.Row="1" Grid.Column="0">Image</TextBlock>
-
             <Image Source="{Binding Path=Image}" Grid.Row="1" Grid.Column="1"></Image>
+            
             <TextBlock Grid.Row="2" Grid.Column="0">Description</TextBlock>
-            <TextBlock Grid.Row="2" Grid.Column="1"></TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Description}"></TextBlock>
+            
             <TextBlock Grid.Row="3" Grid.Column="0">Start Price</TextBlock>
-            <TextBlock Grid.Row="3" Grid.Column="1"></TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding StartPrice}"></TextBlock>
+            
             <TextBlock Grid.Row="4" Grid.Column="0">Current Price</TextBlock>
-            <TextBlock Grid.Row="4" Grid.Column="1"></TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CurrentPrice}"></TextBlock>
+            
             <TextBlock Grid.Row="5" Grid.Column="0">Your bid</TextBlock>
-            <TextBox Grid.Row="5" Grid.Column="1" Name="TextBoxBid"></TextBox>
+            <TextBox Grid.Row="5" Grid.Column="1" Name="TextBoxBid" Text="{Binding NewBid}"></TextBox>
+            
             <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
-                <Button HorizontalAlignment="Stretch" Click="btn_placeBid">Place Bid</Button>
-                <Button HorizontalAlignment="Stretch" Click="btn_Cancel">Cancel</Button>
+                <Button HorizontalAlignment="Stretch" Command="{Binding PlaceBidCommand}">Place Bid</Button>
+                <Button HorizontalAlignment="Stretch" Command="{Binding CancelPlaceBidCommand}">Cancel</Button>
             </StackPanel>
         </Grid>
 

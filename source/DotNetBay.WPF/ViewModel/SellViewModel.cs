@@ -84,6 +84,8 @@ namespace DotNetBay.WPF.ViewModel
                     Image = arr
                 };
                 auctionService.Save(tmp);
+                this.sellView.Close();
+                Update();
             }
             else
             {
@@ -115,11 +117,7 @@ namespace DotNetBay.WPF.ViewModel
         public string ImagePath { get; set; }
         public string Description { get; set; }
         public string StartPrice { get; set; }
-
-        private DateTime startDate;
         public DateTime StartDate { get; set; }
-
-        private DateTime endDate;
         public DateTime EndDate { get; set; }
     }
 

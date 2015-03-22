@@ -11,8 +11,11 @@ namespace DotNetBay.WPF.ViewModel
     public class MainViewModel : ViewModelBase
     {
 
-        private MainWindow mainWindow;
         private ObservableCollection<AuctionViewModel> auctions = new ObservableCollection<AuctionViewModel>();
+
+        public delegate void UpdateAboutChanges();
+
+        public event UpdateAboutChanges Update;
 
         public MainViewModel(IAuctioneer auctioneer, IAuctionService auctionService)
         {
@@ -27,9 +30,12 @@ namespace DotNetBay.WPF.ViewModel
 
         private void addNewAuctionAction()
         {
+            System.Console.WriteLine("addNewAuctionCommand Called");
             var sellView = new SellView();
             sellView.Show();
+            Update();
         }
+
 
         public ObservableCollection<AuctionViewModel> Auctions
         {
@@ -39,5 +45,5 @@ namespace DotNetBay.WPF.ViewModel
             }
         }
     }
-    
+
 }

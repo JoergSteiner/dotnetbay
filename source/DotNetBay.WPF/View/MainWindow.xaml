@@ -48,6 +48,7 @@
                 <DataGridTemplateColumn Header="Place Bid">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
+                            <Button Background="Green" Command="{Binding PlaceBidCommand}" Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">Place</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
