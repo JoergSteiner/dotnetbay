@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DotNetBay.Model;
 using DotNetBay.Core;
+using DotNetBay.WPF.ViewModel;
 
 namespace DotNetBay.WPF.View
 {
@@ -24,56 +25,16 @@ namespace DotNetBay.WPF.View
     public partial class MainWindow : Window
     {
 
-        readonly ObservableCollection<Auction> auctions = new ObservableCollection<Auction>();
-
         public MainWindow()
         {
-            DataContext = this;
-            var mainRepository = ((App)Application.Current).MainRepository;
-            var memberService = new SimpleMemberService(mainRepository);
-            var auctionServie = new AuctionService(mainRepository, memberService);
-            foreach (var auction in auctionServie.GetAll())
-            {
-                auctions.Add(auction);
-            }
+            this.InitializeComponent();
+
             var app = App.Current as App;
+            var memberService = new SimpleMemberService(app.MainRepository);
+            var auctionService = new AuctionService(app.MainRepository, memberService);
 
-            app.AuctionRunner.Auctioneer.AuctionStarted += Auctioneer_AuctionStarted;
-
-            InitializeComponent();
+            this.DataContext = new MainViewModel(app.AuctionRunner.Auctioneer, auctionService);
         }
 
-        private void Auctioneer_AuctionStarted(object sender, Core.Execution.AuctionEventArgs e)
-        {
-            System.Diagnostics.Debug.WriteLine("auctionstarted");
-            CollectionViewSource.GetDefaultView(auctions).Refresh();
-        }
-
-        private void Btn_bid(object sender, RoutedEventArgs e)
-        {
-            var auction = this.AuctionGrid.SelectedItem;
-            if (auction.GetType() == typeof(Auction))
-            {
-                var bidView = new BidView(this, (Auction) auction);
-                bidView.ShowDialog(); // Blocking
-            }            
-        }
-
-        private void Btn_newAuction(object sender, RoutedEventArgs e)
-        {
-            var sellView = new SellView(this);
-            sellView.ShowDialog(); // Blocking
-        }
-
-
-        public ObservableCollection<Auction> Auctions
-        {
-            get { return this.auctions; }
-        }
-
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            System.Diagnostics.Debug.WriteLine("Halloooooooooooooooooo");
-        }
     }
 }

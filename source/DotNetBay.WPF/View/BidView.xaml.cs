@@ -76,10 +76,6 @@ namespace DotNetBay.WPF.View
             if (bid != null)
             {
                 bids.Add(bid);
-                auction.ActiveBid = bid;
-                auction.IsClosed = false;
-                mainWindow.Auctions.Remove(auction);
-                mainWindow.Auctions.Add(auction);
 
             }
 
