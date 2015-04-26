@@ -8,20 +8,30 @@ using DotNetBay.EF;
 
 namespace DotNetBay.Test.Storage
 {
-    class EFMainRepositoryFactory : IRepositoryFactory
+    public class EFMainRepositoryFactory : IRepositoryFactory
     {
-
-      private IMainRepository repo;
-
-        public IMainRepository CreateMainRepository()
-        {
-          repo = new EFMainRepository();
-          return repo;
-        }
+        private List<EFMainRepository> repos = new List<EFMainRepository>();
 
         public void Dispose()
         {
-          repo = null;
+            foreach (var repo in this.repos)
+            {
+                repo.Database.Delete();
+            }
+        }
+
+        public IMainRepository CreateMainRepository()
+        {
+            var repo = new EFMainRepository();
+
+            if (!this.repos.Any())
+            {
+                repo.Database.Delete();
+            }
+
+            this.repos.Add(repo);
+
+            return repo;
         }
     }
 }

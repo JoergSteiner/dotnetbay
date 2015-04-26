@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace DotNetBay.EF
 {
     class MainDbContext : System.Data.Entity.DbContext
     {
-      public MainDbContext() : base("name=DatabaseConnection")
+      public MainDbContext() : base("DatabaseConnection")
       {
           this.Configuration.LazyLoadingEnabled = false;
           this.Configuration.ProxyCreationEnabled = false;
