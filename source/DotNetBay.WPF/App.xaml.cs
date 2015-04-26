@@ -27,8 +27,8 @@ namespace DotNetBay.WPF
         public App()
         {
 
-            //mainRepository = new FileSystemRepositoryFactory("store").CreateMainRepository();
-            mainRepository = new EFMainRepository();
+            mainRepository = new FileSystemRepositoryFactory("store").CreateMainRepository();
+            //mainRepository = new EFMainRepository();
 
             auctionRunner = new AuctionRunner(mainRepository);
             auctionRunner.Start();

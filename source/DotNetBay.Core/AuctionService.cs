@@ -42,7 +42,7 @@ namespace DotNetBay.Core
             
             var newAuction = this.mainRepository.Add(auction);
             this.mainRepository.SaveChanges();
-            
+
             return newAuction;
         }
 

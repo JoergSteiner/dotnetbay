@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
 using DotNetBay.Core;
@@ -24,6 +26,13 @@ namespace DotNetBay.WPF.ViewModel
             {
                 this.auctions.Add(new AuctionViewModel(auction));
             }
+            this.auctions.CollectionChanged += this.OnPropertyChanged;
+        }
+
+        private void OnPropertyChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Console.WriteLine("Something in the DS changed");
+            this.Update();
         }
 
         public ICommand AddAuctionCommand { get; private set; }
@@ -44,6 +53,7 @@ namespace DotNetBay.WPF.ViewModel
                 return this.auctions;
             }
         }
+        
     }
 
 }
