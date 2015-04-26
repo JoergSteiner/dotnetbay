@@ -16,6 +16,9 @@ namespace DotNetBay.Test.Core
         [TestCase]
         public void Auction_BidIsBelowStartPrice_HasNoImpact()
         {
+
+            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+
             var repo = new InMemoryMainRepository();
             var auctioneer = new Auctioneer(repo);
 

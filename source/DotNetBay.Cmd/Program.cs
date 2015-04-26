@@ -12,8 +12,12 @@ namespace DotNetBay.Cmd
     /// </summary>
     public class Program
     {
+        
+
         public static void Main(string[] args)
         {
+            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+
             Console.WriteLine("DotNetBay Commandline");
 
             var store = new FileSystemMainRepository("store.json");

@@ -25,11 +25,13 @@ namespace DotNetBay.WPF.View
     /// </summary>
     public partial class MainWindow : Window
     {
-
         private MainViewModel model;
 
         public MainWindow()
         {
+
+            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+
             this.InitializeComponent();
             var app = App.Current as App;
             var memberService = new SimpleMemberService(app.MainRepository);
