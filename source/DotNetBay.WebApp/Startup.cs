@@ -4,21 +4,14 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Owin;
 
-[assembly: OwinStartup(typeof(DotNetBay.SelfHost.Startup))]
 
-namespace DotNetBay.SelfHost
+namespace DotNetBay.WebApp
 {
     public class Startup
     {
         public void Configuration(IAppBuilder appBuilder)
         {
-            HttpConfiguration config = new HttpConfiguration();
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
+            var config = new HttpConfiguration();
 
             config.MapHttpAttributeRoutes();
 

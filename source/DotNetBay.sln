@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBay.WebApp", "DotNetB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBay.WebApi", "DotNetBay.WebApi\DotNetBay.WebApi.csproj", "{44D9943F-C8D3-4478-BF7A-E31D4CB05169}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetBay.SelfHost", "DotNetBay.SelfHost\DotNetBay.SelfHost.csproj", "{8B4B5649-FBD4-4FF1-9CFA-924F6FEF4B1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{44D9943F-C8D3-4478-BF7A-E31D4CB05169}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44D9943F-C8D3-4478-BF7A-E31D4CB05169}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44D9943F-C8D3-4478-BF7A-E31D4CB05169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B4B5649-FBD4-4FF1-9CFA-924F6FEF4B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B4B5649-FBD4-4FF1-9CFA-924F6FEF4B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B4B5649-FBD4-4FF1-9CFA-924F6FEF4B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B4B5649-FBD4-4FF1-9CFA-924F6FEF4B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

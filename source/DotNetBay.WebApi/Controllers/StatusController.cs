@@ -9,9 +9,16 @@ namespace DotNetBay.WebApi.Controllers
 {
     public class StatusController : ApiController
     {
-      public IHttpActionResult GetStatus()
-      {
-        return this.Ok("Yes");
-      }
+        [HttpGet]
+        [Route("api/status")]
+        public IHttpActionResult GetStatus()
+        {
+            return this.Ok("Yes");
+        }
+
+        public string Get()
+        {
+            return "hi";
+        }
     }
 }

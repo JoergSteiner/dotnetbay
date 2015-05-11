@@ -53,6 +53,10 @@
     <Compile Include="Migrations\201504261305233_name1.Designer.cs">
       <DependentUpon>201504261305233_name1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505021158120_WebAPI.cs" />
+    <Compile Include="Migrations\201505021158120_WebAPI.Designer.cs">
+      <DependentUpon>201505021158120_WebAPI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,6 +77,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201504261305233_name1.resx">
       <DependentUpon>201504261305233_name1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505021158120_WebAPI.resx">
+      <DependentUpon>201505021158120_WebAPI.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
