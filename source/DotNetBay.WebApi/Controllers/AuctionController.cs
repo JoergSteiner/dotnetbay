@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.UI.WebControls;
@@ -40,7 +43,7 @@ namespace DotNetBay.WebApi.Controllers
         {
             var allAuctions = this.auctionService.GetAll();
             List<AuctionDto> auctionDtos = new List<AuctionDto>();
-            foreach(Auction a in allAuctions)
+            foreach (Auction a in allAuctions)
             {
                 auctionDtos.Add(new AuctionDto(a));
             }
@@ -51,10 +54,10 @@ namespace DotNetBay.WebApi.Controllers
         public IHttpActionResult GetAuction(long id)
         {
             Console.WriteLine("Id is: " + id);
-            Auction a = 
+            Auction a =
                 (from x in this.auctionService.GetAll()
-                where x.Id == id
-                select x).FirstOrDefault();
+                 where x.Id == id
+                 select x).FirstOrDefault();
             return this.Ok(new AuctionDto(a));
         }
 
@@ -80,6 +83,13 @@ namespace DotNetBay.WebApi.Controllers
             {
                 return this.BadRequest(e.Message);
             }
+        }
+
+        [HttpPost]
+        [Route("api/Auction/{id}/image")]
+        public Task<IHttpActionResult> Upload()
+        {
+            throw new MissingMethodException("Method not implemented yet");
         }
 
     }

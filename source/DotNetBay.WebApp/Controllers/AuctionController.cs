@@ -22,5 +22,10 @@ namespace DotNetBay.WebApp.Controllers
                 return this.View(auctions);
             }
         }
+
+        public ActionResult Create()
+        {
+            return this.View();
+        }
     }
 }

@@ -17,6 +17,7 @@ using DotNetBay.Model;
 using DotNetBay.Core;
 using DotNetBay.WPF.ViewModel;
 using System.ComponentModel;
+using DotNetBay.WPF.Services;
 
 namespace DotNetBay.WPF.View
 {
@@ -29,6 +30,13 @@ namespace DotNetBay.WPF.View
 
         public MainWindow()
         {
+
+
+
+            RemoteAuctionService service2 = new RemoteAuctionService();
+            service2.Save(new Auction());
+            Console.WriteLine("In App after service save");
+            return;
 
             var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
 

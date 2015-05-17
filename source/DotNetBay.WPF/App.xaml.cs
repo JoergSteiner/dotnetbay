@@ -12,6 +12,7 @@ using DotNetBay.Core;
 using DotNetBay.Core.Execution;
 using DotNetBay.Model;
 using DotNetBay.EF;
+using DotNetBay.WPF.Services;
 
 namespace DotNetBay.WPF
 {
