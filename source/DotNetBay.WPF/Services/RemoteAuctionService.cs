@@ -25,25 +25,29 @@ namespace DotNetBay.WPF.Services
 
         public Model.Auction Save(Model.Auction auction)
         {
+
+          var url = "http://localhost:9001/api/Auction";
+
             using (HttpClient httpClient = new HttpClient())
             {
-
-                Console.WriteLine("In Save in RemoteAuctionService");
-
                 AuctionDto dto = new AuctionDto(auction);
 
                 StringWriter sw = new StringWriter();
                 JsonSerializer serializer = new JsonSerializer();
                 JsonWriter writer = new JsonTextWriter(sw);
                 serializer.Serialize(writer, auction);
-
                 Console.WriteLine(sw.ToString());
-                return null;
+                httpClient.PostAsync(url, new StringContent(sw.ToString(), System.Text.Encoding.UTF8, "application/json"));
+
+                return auction;
             }
         }
 
         public Model.Bid PlaceBid(Model.Auction auction, double amount)
         {
+            var url = "http://localhost:9001/api/Bid/{id}/bids";
+
+
             throw new NotImplementedException();
         }
     }

@@ -18,6 +18,7 @@ using DotNetBay.Core;
 using DotNetBay.WPF.ViewModel;
 using System.ComponentModel;
 using DotNetBay.WPF.Services;
+using System.Threading;
 
 namespace DotNetBay.WPF.View
 {
@@ -32,7 +33,7 @@ namespace DotNetBay.WPF.View
         {
 
 
-
+          Thread.Sleep(5000);
             RemoteAuctionService service2 = new RemoteAuctionService();
             service2.Save(new Auction());
             Console.WriteLine("In App after service save");

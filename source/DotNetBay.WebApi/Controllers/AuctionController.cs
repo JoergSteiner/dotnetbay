@@ -39,20 +39,27 @@ namespace DotNetBay.WebApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/Auction")]
         public IHttpActionResult GetAllAuctions()
         {
+            Console.WriteLine("GetAllAuctions");
+
             var allAuctions = this.auctionService.GetAll();
             List<AuctionDto> auctionDtos = new List<AuctionDto>();
             foreach (Auction a in allAuctions)
             {
                 auctionDtos.Add(new AuctionDto(a));
             }
-            return this.Ok(auctionDtos);
+          return this.Ok("huhu");
+            //return this.Ok(auctionDtos);
         }
 
+        [HttpGet]
         [Route("api/Auction/{id}")]
         public IHttpActionResult GetAuction(long id)
         {
+            Console.WriteLine("GetAuction");
             Console.WriteLine("Id is: " + id);
             Auction a =
                 (from x in this.auctionService.GetAll()
@@ -61,11 +68,20 @@ namespace DotNetBay.WebApi.Controllers
             return this.Ok(new AuctionDto(a));
         }
 
-        [HttpPost]
         [Route("api/Auction")]
+        [HttpPost]
         public IHttpActionResult AddNewAuction([FromBody] AuctionDto dto)
         {
-            Auction a = new Auction
+          try
+          {
+            Console.WriteLine("AddNewAuction {0}", dto.Title);
+          }
+          catch (Exception e)
+          {
+            Console.WriteLine("AddNewAuction {0}", "no title");
+          }
+
+          Auction a = new Auction
             {
                 Seller = this.memberService.GetCurrentMember(),
                 EndDateTimeUtc = dto.EndDateTimeUtc,
@@ -89,6 +105,7 @@ namespace DotNetBay.WebApi.Controllers
         [Route("api/Auction/{id}/image")]
         public Task<IHttpActionResult> Upload()
         {
+            Console.WriteLine("Upload");
             throw new MissingMethodException("Method not implemented yet");
         }
 

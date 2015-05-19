@@ -19,7 +19,6 @@ namespace DotNetBay.SelfHost
                 defaults: new { id = RouteParameter.Optional }
             );
 
-
             config.MapHttpAttributeRoutes();
 
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
