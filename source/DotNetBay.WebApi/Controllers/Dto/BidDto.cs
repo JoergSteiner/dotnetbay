@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using DotNetBay.Model;
 
-namespace DotNetBay.WebApi.Controllers
+namespace DotNetBay.WebApi.Controllers.Dto
 {
     public class BidDto
     {

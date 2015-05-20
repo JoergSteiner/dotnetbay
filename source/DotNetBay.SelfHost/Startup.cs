@@ -14,14 +14,6 @@ namespace DotNetBay.SelfHost
         {
             HttpConfiguration config = new HttpConfiguration();
 
-            /*
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-             */
-
             config.MapHttpAttributeRoutes();
 
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
