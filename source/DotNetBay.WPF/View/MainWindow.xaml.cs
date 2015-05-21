@@ -31,23 +31,16 @@ namespace DotNetBay.WPF.View
 
         public MainWindow()
         {
-
-
-          Thread.Sleep(5000);
-            RemoteAuctionService service2 = new RemoteAuctionService();
-            service2.Save(new Auction());
-            Console.WriteLine("In App after service save");
-            return;
-
             var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
 
             this.InitializeComponent();
             var app = App.Current as App;
             var memberService = new SimpleMemberService(app.MainRepository);
-            var auctionService = new AuctionService(app.MainRepository, memberService);
+            var auctionService = new RemoteAuctionService();
+            //var auctionService = new AuctionService(app.MainRepository, memberService);
 
-            model = new MainViewModel(app.AuctionRunner.Auctioneer, auctionService);
-            model.Update += this.UpdateAboutChanges;
+            this.model = new MainViewModel(app.AuctionRunner.Auctioneer, auctionService);
+            this.model.Update += this.UpdateAboutChanges;
             this.DataContext = model;
         }
 

@@ -136,6 +136,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\NewAuctionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -168,10 +169,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Auction\Index.cshtml" />
     <Content Include="Views\Auction\Create.cshtml" />
+    <Content Include="Views\Auction\Created.cshtml" />
+    <Content Include="Views\Auction\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -205,6 +207,10 @@
     <ProjectReference Include="..\DotNetBay.Model\DotNetBay.Model.csproj">
       <Project>{908d8739-3185-46eb-a03e-6b6c3849857c}</Project>
       <Name>DotNetBay.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNetBay.WebApi\DotNetBay.WebApi.csproj">
+      <Project>{4d726f5a-faa4-48fe-843c-7c257b060237}</Project>
+      <Name>DotNetBay.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

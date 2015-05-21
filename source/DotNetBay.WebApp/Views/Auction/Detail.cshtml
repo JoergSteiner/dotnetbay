@@ -1,0 +1,33 @@
+﻿@model DotNetBay.WebApi.Controllers.Dto.AuctionDto
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<table class="table table-striped">
+    <tr>
+        <td>@Html.LabelFor(model => model.Title)</td>
+        <td>@Html.TextBoxFor(model => model.Title, new {@class = "disabled form-control", @readonly = "readonly"})</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.Description)</td>
+        <td>@Html.TextBoxFor(model => model.Description, new {@class = "disabled form-control", @readonly = "readonly"})</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.StartPrice)</td>
+        <td>@Html.TextBoxFor(model => model.StartPrice, new {@class = "disabled form-control", @readonly = "readonly"})</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.StartDateTimeUtc)</td>
+        <td>@Html.TextBoxFor(model => model.StartDateTimeUtc, new {@class = "disabled form-control", @readonly = "readonly"})</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.EndDateTimeUtc)</td>
+        <td>@Html.TextBoxFor(model => model.EndDateTimeUtc, new {@class = "disabled form-control", @readonly = "readonly"})</td>
+    </tr>
+</table>
+
+@Html.ActionLink("Home", "Index", "Home")
+

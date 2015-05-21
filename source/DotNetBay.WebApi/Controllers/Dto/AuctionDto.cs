@@ -8,6 +8,12 @@ namespace DotNetBay.WebApi.Controllers.Dto
 {
     public class AuctionDto
     {
+
+        public AuctionDto()
+        {
+            
+        }
+
         public AuctionDto(Auction a)
         {
             this.Id = a.Id;

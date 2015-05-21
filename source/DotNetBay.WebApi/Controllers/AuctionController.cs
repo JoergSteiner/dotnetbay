@@ -28,8 +28,8 @@ namespace DotNetBay.WebApi.Controllers
             this.auctionService = new AuctionService(repo, this.memberService);
             if (!this.auctionService.GetAll().Any())
             {
-                var me = memberService.GetCurrentMember();
-                auctionService.Save(new Auction
+                var me = this.memberService.GetCurrentMember();
+                this.auctionService.Save(new Auction
                 {
                     Title = "My First Auction",
                     StartDateTimeUtc = DateTime.UtcNow.AddSeconds(20),
@@ -44,24 +44,19 @@ namespace DotNetBay.WebApi.Controllers
         [Route("api/Auction")]
         public IHttpActionResult GetAllAuctions()
         {
-            Console.WriteLine("GetAllAuctions");
-
             var allAuctions = this.auctionService.GetAll();
             List<AuctionDto> auctionDtos = new List<AuctionDto>();
             foreach (Auction a in allAuctions)
             {
                 auctionDtos.Add(new AuctionDto(a));
             }
-            return this.Ok("huhu");
-            //return this.Ok(auctionDtos);
+            return this.Ok(auctionDtos);
         }
 
         [HttpGet]
         [Route("api/Auction/{id}")]
         public IHttpActionResult GetAuction(long id)
         {
-            Console.WriteLine("GetAuction");
-            Console.WriteLine("Id is: " + id);
             Auction a =
                 (from x in this.auctionService.GetAll()
                  where x.Id == id
@@ -73,10 +68,10 @@ namespace DotNetBay.WebApi.Controllers
         [HttpPost]
         public IHttpActionResult AddNewAuction([FromBody] AuctionDto dto)
         {
-
             try
             {
                 this.auctionService.Save(dto.GetAuction(this.memberService.GetCurrentMember()));
+                Console.WriteLine("Saved auction");
                 return this.Created(string.Format("api/Auction/{0}", dto.Id), dto);
             }
             catch (Exception e)
@@ -87,10 +82,22 @@ namespace DotNetBay.WebApi.Controllers
 
         [HttpPost]
         [Route("api/Auction/{id}/image")]
-        public Task<IHttpActionResult> Upload()
+        public async Task<IHttpActionResult> Upload(long id)
         {
-            Console.WriteLine("Upload");
-            throw new MissingMethodException("Method not implemented yet");
+            var auction = this.auctionService.GetAll().FirstOrDefault(a => a.Id == id);
+
+            if (auction != null)
+            {
+                var streamProvider = await this.Request.Content.ReadAsMultipartAsync(); // HERE
+                foreach (var file in streamProvider.Contents)
+                {
+                    var image = await file.ReadAsByteArrayAsync();
+                    auction.Image = image;
+                    this.auctionService.Save(auction);
+                }
+                return this.Ok();
+            }
+            return this.NotFound();
         }
 
     }
