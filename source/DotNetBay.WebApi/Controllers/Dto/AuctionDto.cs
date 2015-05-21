@@ -27,6 +27,26 @@ namespace DotNetBay.WebApi.Controllers.Dto
             this.Bids = new List<BidDto>();
         }
 
+        public Auction GetAuction(Member seller)
+        {
+            Auction a = new Auction()
+            {
+                Id = this.Id,
+                StartPrice = this.StartPrice,
+                Title = this.Title,
+                Description = this.Description,
+                Image = this.Image,
+                CurrentPrice = this.CurrentPrice,
+                StartDateTimeUtc = this.StartDateTimeUtc,
+                EndDateTimeUtc = this.EndDateTimeUtc,
+                CloseDateTimeUtc = this.CloseDateTimeUtc,
+                Seller = seller,
+                IsClosed = this.IsClosed,
+                IsRunning = this.IsRunning,
+            };
+            return a;
+        }
+
         public long Id { get; set; }
 
         public double StartPrice { get; set; }

@@ -52,7 +52,7 @@ namespace DotNetBay.WebApi.Controllers
             {
                 auctionDtos.Add(new AuctionDto(a));
             }
-          return this.Ok("huhu");
+            return this.Ok("huhu");
             //return this.Ok(auctionDtos);
         }
 
@@ -73,28 +73,11 @@ namespace DotNetBay.WebApi.Controllers
         [HttpPost]
         public IHttpActionResult AddNewAuction([FromBody] AuctionDto dto)
         {
-          try
-          {
-            Console.WriteLine("AddNewAuction {0}", dto.Title);
-          }
-          catch (Exception e)
-          {
-            Console.WriteLine("AddNewAuction {0}", "no title");
-          }
-
-          Auction a = new Auction
-            {
-                Seller = this.memberService.GetCurrentMember(),
-                EndDateTimeUtc = dto.EndDateTimeUtc,
-                StartDateTimeUtc = dto.StartDateTimeUtc,
-                Title = dto.Title,
-                StartPrice = dto.StartPrice
-            };
 
             try
             {
-                this.auctionService.Save(a);
-                return this.Created(string.Format("api/Auction/{0}", a.Id), new AuctionDto(a));
+                this.auctionService.Save(dto.GetAuction(this.memberService.GetCurrentMember()));
+                return this.Created(string.Format("api/Auction/{0}", dto.Id), dto);
             }
             catch (Exception e)
             {
