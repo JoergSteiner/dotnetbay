@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;

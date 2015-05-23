@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
-using System.Web.UI.WebControls;
 using DotNetBay.Core;
 using DotNetBay.EF;
 using DotNetBay.Model;
+using DotNetBay.SignalR.Hubs;
 using DotNetBay.WebApi.Controllers.Dto;
 
 namespace DotNetBay.WebApi.Controllers
@@ -19,6 +17,7 @@ namespace DotNetBay.WebApi.Controllers
 
         private readonly IAuctionService auctionService;
         private readonly IMemberService memberService;
+        private AuctionsHub auctionsHub = new AuctionsHub();
 
         public AuctionController()
         {
@@ -72,6 +71,7 @@ namespace DotNetBay.WebApi.Controllers
             {
                 this.auctionService.Save(dto.GetAuction(this.memberService.GetCurrentMember()));
                 Console.WriteLine("Saved auction");
+                AuctionsHub.NotifyNewAuction(dto.GetAuction(this.memberService.GetCurrentMember()));
                 return this.Created(string.Format("api/Auction/{0}", dto.Id), dto);
             }
             catch (Exception e)

@@ -45,7 +45,7 @@ namespace DotNetBay.WebApi.Controllers
         [Route("api/Bid/{id}/bids")]
         public IHttpActionResult placeBid(long id, [FromBody] BidDto dto)
         {
-            Auction a = (from x in auctionService.GetAll()
+            Auction a = (from x in this.auctionService.GetAll()
                 where x.Id == id
                 select x).FirstOrDefault();
             if (a == null)

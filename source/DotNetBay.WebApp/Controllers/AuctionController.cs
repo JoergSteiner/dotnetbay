@@ -7,8 +7,10 @@ using System.Web.Http;
 using System.Web.Mvc;
 
 using DotNetBay.Model;
+using DotNetBay.SignalR.Hubs;
 using DotNetBay.WebApp.ViewModels;
 using DotNetBay.WebApi.Controllers.Dto;
+using Microsoft.AspNet.SignalR;
 using Newtonsoft.Json;
 
 namespace DotNetBay.WebApp.Controllers
@@ -23,6 +25,7 @@ namespace DotNetBay.WebApp.Controllers
             {
                 Task<String> response = httpClient.GetStringAsync(uri);
                 List<Auction> auctions = JsonConvert.DeserializeObject<List<Auction>>(response.Result);
+                AuctionsHub.NotifyNewAuction(new Auction());
                 return this.View(auctions);
             }
         }
@@ -73,7 +76,6 @@ namespace DotNetBay.WebApp.Controllers
             {
                 return this.Content(model.Title);
             }
-            return this.Content("Sorry, you entered invalid data");
         }
     }
 }

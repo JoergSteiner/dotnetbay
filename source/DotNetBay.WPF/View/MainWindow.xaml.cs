@@ -19,6 +19,8 @@ using DotNetBay.WPF.ViewModel;
 using System.ComponentModel;
 using DotNetBay.WPF.Services;
 using System.Threading;
+using DotNetBay.SignalR.Hubs;
+using Microsoft.AspNet.SignalR;
 
 namespace DotNetBay.WPF.View
 {
@@ -37,18 +39,22 @@ namespace DotNetBay.WPF.View
             var app = App.Current as App;
             var memberService = new SimpleMemberService(app.MainRepository);
             var auctionService = new RemoteAuctionService();
-            //var auctionService = new AuctionService(app.MainRepository, memberService);
+            auctionService.newAuctionEvent += this.auctionService_newAuctionEvent;
 
             this.model = new MainViewModel(app.AuctionRunner.Auctioneer, auctionService);
             this.model.Update += this.UpdateAboutChanges;
             this.DataContext = model;
         }
 
+        void auctionService_newAuctionEvent()
+        {
+            Console.WriteLine("New Auction Event");
+        }
+
         public void UpdateAboutChanges()
         {
             this.DataContext = null;
             this.DataContext = this.model;
-            Console.WriteLine("MainWindow.xaml.cs has been notified");
         }
 
     }
